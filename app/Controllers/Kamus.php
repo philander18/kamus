@@ -14,6 +14,6 @@ class Kamus extends BaseController
     }
     public function index()
     {
-        return view('Templates/index');
+        return view('Kamus/index');
     }
 }
