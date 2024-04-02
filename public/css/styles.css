@@ -41,7 +41,9 @@ body, .modal-content {
   font-variation-settings:
     "wdth" 100;
 }
-
+.konten-kamus {
+    display: grid;
+}
 
 @media screen and (min-width:600px) {
     .container-grid-table {
@@ -60,6 +62,9 @@ body, .modal-content {
     }
     div.container-grid-table div:nth-child(3){
         text-align: justify;
+    }
+    div.page{
+        width: 50%;
     }
 }
 @media screen and (min-width:1200px) {
@@ -92,8 +97,34 @@ body, .modal-content {
     div.judul-label {
         display: none;
     }
+    div.page{
+        width: 100%;
+    }
 }
 
+div.page ul{
+    display: flex;
+    margin-top: 1rem;
+    list-style: none;
+    border-right: 1px solid black;
+    border-radius: 8px;
+    margin-left: -2rem;
+}
+
+div.page ul li {
+    flex: 1;
+    background-color: rgb(255, 255, 255,0.2);
+    text-align: center;
+    border-left: 1px solid black;
+}
+div.page ul li:first-child {
+    border-left: 1px solid black;
+    border-radius: 8px;
+}
+div.page ul li a{
+    color: black;
+    padding: 2px;
+}
 
 
 

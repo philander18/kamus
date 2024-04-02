@@ -56,4 +56,17 @@ class Kamus extends BaseController
     {
         echo json_encode($this->KamusModel->where('id', $_POST['id'])->findAll()[0]);
     }
+    public function search_kamus()
+    {
+        $keyword = $_POST['keyword'];
+        if ($_POST['jenis'] == 1) {
+            $where = "materi like '%" . $keyword . "%' or topik like '%" . $keyword . "%'";
+        } else {
+            $where = "isi like '%" . $keyword . "%'";
+        }
+        $data = [
+            'kamus' => $this->KamusModel->where($where)->orderBy('materi', 'ASC')->findAll()
+        ];
+        return view('Kamus/Konten/index', $data);
+    }
 }

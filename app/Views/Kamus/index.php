@@ -50,6 +50,15 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <div class="page cabin-500">
+        <ul>
+            <li><a href="">First</a></li>
+            <li><a href="">Prev</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">Next</a></li>
+            <li><a href="">Last</a></li>
+        </ul>
+    </div>
 </div>
 <div class="modal fade" id="form_kamus" tabindex="-1" aria-labelledby="Form Tambah" aria-hidden="true">
     <div class="modal-dialog modal-lg">

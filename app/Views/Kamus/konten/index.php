@@ -26,6 +26,15 @@
         </div>
     </div>
 <?php endforeach; ?>
+<div class="page cabin-500">
+    <ul>
+        <li><a href="">First</a></li>
+        <li><a href="">Prev</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">Next</a></li>
+        <li><a href="">Last</a></li>
+    </ul>
+</div>
 <script>
     $(document).ready(function() {
         $('.edit_kamus').on('click', function() {
