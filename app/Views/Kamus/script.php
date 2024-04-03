@@ -12,7 +12,7 @@
             keyword = $('#keyword').val(),
             page = halaman;
         $.ajax({
-            url: method_url('kamus', 'search_kamus'),
+            url: method_url('Kamus', 'search_kamus'),
             data: {
                 keyword: keyword,
                 jenis: jenis,
@@ -39,7 +39,7 @@
             clear_form_kamus();
             $('#id').val($(this).data('id'));
             $.ajax({
-                url: method_url('kamus', 'get_kamus'),
+                url: method_url('Kamus', 'get_kamus'),
                 data: {
                     id: $(this).data('id'),
                 },
@@ -72,7 +72,7 @@
                 topik = $('#topik').val(),
                 isi = $('#isi').val();
             $.ajax({
-                url: method_url('kamus', 'insertedit'),
+                url: method_url('Kamus', 'insertedit'),
                 data: {
                     id: id,
                     materi: materi,
@@ -91,7 +91,7 @@
         $('#ya_hapus').on('click', function() {
             const id = $('#id').val();
             $.ajax({
-                url: method_url('kamus', 'delete_kamus'),
+                url: method_url('Kamus', 'delete_kamus'),
                 data: {
                     id: id,
                 },
