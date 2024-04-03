@@ -32,6 +32,7 @@
             tombol_form_kamus();
             $('#submit_tambah').html('Tambah');
             $('#judul_tambah').html('Tambah Kamus');
+            $('#hapus_kamus').prop('hidden', true);
             $('#id').val(0);
         });
         $('.edit_kamus').on('click', function() {
@@ -51,6 +52,7 @@
                     tombol_form_kamus();
                     $('#submit_tambah').html('Update');
                     $('#judul_tambah').html('Update Kamus');
+                    $('#hapus_kamus').prop('hidden', false);
                 }
             });
         });
@@ -81,6 +83,23 @@
                 dataType: 'html',
                 success: function(data) {
                     $('.konten-kamus').html(data);
+                    $('#keyword').val('');
+                    tampil_flash();
+                }
+            });
+        });
+        $('#ya_hapus').on('click', function() {
+            const id = $('#id').val();
+            $.ajax({
+                url: method_url('kamus', 'delete_kamus'),
+                data: {
+                    id: id,
+                },
+                method: 'post',
+                dataType: 'html',
+                success: function(data) {
+                    $('.konten-kamus').html(data);
+                    $('#keyword').val('');
                     tampil_flash();
                 }
             });

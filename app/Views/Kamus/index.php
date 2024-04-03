@@ -41,7 +41,9 @@
                 <?php
                 $text = "";
                 foreach (preg_split("/\r\n|\n|\r/", $row["isi"]) as $list) : {
-                        $part = $list . "<br>";
+                        $part = str_replace('<', '&lt;', $list);
+                        $part = str_replace('>', '&gt;', $part);
+                        $part = $part . "<br>";
                         $text .= $part;
                     }
                 endforeach;
@@ -97,6 +99,26 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary cabin-700" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary cabin-700" id="submit_tambah" data-bs-dismiss="modal">Tambah</button>
+                <button type="button" class="btn btn-primary cabin-700" id="hapus_kamus" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#konfirmasi">Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="konfirmasi" tabindex="-1" aria-labelledby="konfirmasi" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold text-primary" id="konfirmasi_hapus">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding-top:2px;">
+                <div class="form-group">
+                    <label class="text-dark fw-bold ms-2 mb-2 cabin-600">Yakin dihapus?</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary cabin-700" data-bs-dismiss="modal">TIDAK</button>
+                <button type="button" id="ya_hapus" class="btn btn-primary hapus cabin-700" data-bs-dismiss="modal">YA</button>
             </div>
         </div>
     </div>

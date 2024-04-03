@@ -17,7 +17,7 @@ class Kamus extends BaseController
     {
         $jumlahdata = count($this->KamusModel->findAll());
         $lastpage = ceil($jumlahdata / $this->jumlahlist);
-        $all = $this->KamusModel->findAll();
+        $all = $this->KamusModel->orderBy('materi', 'ASC')->findAll();
         $tabel = array_splice($all, 0);
         array_splice($tabel, $this->jumlahlist);
         $pagination = $this->pagination(1, $lastpage);
@@ -58,14 +58,46 @@ class Kamus extends BaseController
                 session()->setFlashdata('pesan', 'Update kamus  ' . $_POST['topik'] . ' Gagal.');
             }
         }
+        $jumlahdata = count($this->KamusModel->findAll());
+        $lastpage = ceil($jumlahdata / $this->jumlahlist);
+        $all = $this->KamusModel->orderBy('materi', 'ASC')->findAll();
+        $tabel = array_splice($all, 0);
+        array_splice($tabel, $this->jumlahlist);
+        $pagination = $this->pagination(1, $lastpage);
         $data = [
-            'kamus' => $this->KamusModel->findAll()
+            'kamus' => $tabel,
+            'jumlah' => $jumlahdata,
+            'last' => $lastpage,
+            'pagination' => $pagination,
+            'page' => 1
         ];
         return view('Kamus/Konten/index', $data);
     }
     public function get_kamus()
     {
         echo json_encode($this->KamusModel->where('id', $_POST['id'])->findAll()[0]);
+    }
+    public function delete_kamus()
+    {
+        if ($this->KamusModel->where('id', $_POST['id'])->delete()) {
+            session()->setFlashdata('pesan', 'Hapus kamus berhasil.');
+        } else {
+            session()->setFlashdata('pesan', 'Update kamus gagal.');
+        }
+        $jumlahdata = count($this->KamusModel->findAll());
+        $lastpage = ceil($jumlahdata / $this->jumlahlist);
+        $all = $this->KamusModel->orderBy('materi', 'ASC')->findAll();
+        $tabel = array_splice($all, 0);
+        array_splice($tabel, $this->jumlahlist);
+        $pagination = $this->pagination(1, $lastpage);
+        $data = [
+            'kamus' => $tabel,
+            'jumlah' => $jumlahdata,
+            'last' => $lastpage,
+            'pagination' => $pagination,
+            'page' => 1
+        ];
+        return view('Kamus/Konten/index', $data);
     }
     public function search_kamus()
     {

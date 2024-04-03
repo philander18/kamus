@@ -17,7 +17,9 @@
             <?php
             $text = "";
             foreach (preg_split("/\r\n|\n|\r/", $row["isi"]) as $list) : {
-                    $part = $list . "<br>";
+                    $part = str_replace('<', '&lt;', $list);
+                    $part = str_replace('>', '&gt;', $part);
+                    $part = $part . "<br>";
                     $text .= $part;
                 }
             endforeach;
@@ -65,6 +67,8 @@
                     $('#isi').val(data.isi);
                     tombol_form_kamus();
                     $('#submit_tambah').html('Update');
+                    $('#judul_tambah').html('Update Kamus');
+                    $('#hapus_kamus').prop('hidden', false);
                 }
             });
         });
