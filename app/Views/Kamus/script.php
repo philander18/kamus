@@ -7,6 +7,25 @@
         }
     }
 
+    function search(halaman) {
+        const jenis = $('#jenis_search').val(),
+            keyword = $('#keyword').val(),
+            page = halaman;
+        $.ajax({
+            url: method_url('kamus', 'search_kamus'),
+            data: {
+                keyword: keyword,
+                jenis: jenis,
+                page: page
+            },
+            method: 'post',
+            dataType: 'html',
+            success: function(data) {
+                $('.konten-kamus').html(data);
+            }
+        });
+    }
+
     $(document).ready(function() {
         $('#tambah_kamus').on('click', function() {
             clear_form_kamus();
@@ -67,20 +86,10 @@
             });
         });
         $('#keyword').on('keyup', function() {
-            const keyword = $(this).val(),
-                jenis = $('#jenis_search').val();
-            $.ajax({
-                url: method_url('kamus', 'search_kamus'),
-                data: {
-                    keyword: keyword,
-                    jenis: jenis
-                },
-                method: 'post',
-                dataType: 'html',
-                success: function(data) {
-                    $('.konten-kamus').html(data);
-                }
-            });
+            search(1);
+        });
+        $('.linkP').on('click', function() {
+            search($(this).data('page'));
         });
     })
 </script>

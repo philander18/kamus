@@ -50,15 +50,27 @@
             </div>
         </div>
     <?php endforeach; ?>
-    <div class="page cabin-500">
-        <ul>
-            <li><a href="">First</a></li>
-            <li><a href="">Prev</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">Next</a></li>
-            <li><a href="">Last</a></li>
-        </ul>
-    </div>
+    <?php if ($kamus) : ?>
+        <div class="page cabin-500">
+            <ul>
+                <?php if ($pagination['first']) : ?>
+                    <li><a href="#" class="linkP" id="first" name="first" data-page="1">First</a></li>
+                <?php endif ?>
+                <?php if ($pagination['previous']) : ?>
+                    <li><a href="#" class="linkP" id="previous" name="previous" data-page="<?= $page - 1; ?>">Prev</a></li>
+                <?php endif ?>
+                <?php foreach ($pagination['number'] as $number) : ?>
+                    <li><a href="#" class="linkP <?= $pagination['page'] == $number ? 'text-primary' : '' ?>" id="nomor<?= $number; ?>" name="nomor<?= $number; ?>" data-page="<?= $number; ?>"><?= $number; ?></a></li>
+                <?php endforeach ?>
+                <?php if ($pagination['next']) : ?>
+                    <li><a href="#" class="linkP" id="next" name="next" data-page="<?= $page + 1; ?>">Next</a></li>
+                <?php endif ?>
+                <?php if ($pagination['last']) : ?>
+                    <li><a href="#" class="linkP" id="last" name="last" data-page="<?= $last; ?>">Last</a></li>
+                <?php endif ?>
+            </ul>
+        </div>
+    <?php endif ?>
 </div>
 <div class="modal fade" id="form_kamus" tabindex="-1" aria-labelledby="Form Tambah" aria-hidden="true">
     <div class="modal-dialog modal-lg">
